@@ -1,23 +1,16 @@
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
-import { SiPrestashop } from "react-icons/si";
+import { IoLogoSnapchat } from "react-icons/io";
 import { HiTemplate } from "react-icons/hi";
 import { BsCartFill, BsDatabaseFillAdd, BsSearchHeart } from "react-icons/bs";
 import { login, logout, onUserStateChange } from "../api/firebase";
 import User from "./User";
 import Button from "./ui/Button";
+import { useAuthContext } from "./context/Authcontext";
 
 export default function Header() {
-  const [user, setUser] = useState();
+  const { user, login, logout } = useAuthContext();
   const [text, setText] = useState("");
-
-  /** 상태 관찰자 로그인/로그아웃 */
-  useEffect(() => {
-    onUserStateChange((user) => {
-      console.log(user);
-      setUser(user);
-    });
-  }, []);
 
   /** 검색창 submit 함수 */
   const handleSubmit = (e) => {
@@ -32,8 +25,8 @@ export default function Header() {
   return (
     <header className="flex justify-between border-b border-gray-300 p-3">
       <Link to="/" className="flex items-center text-4xl text-brand">
-        <SiPrestashop />
-        <h1 className="ml-4">Soo</h1>
+        <h1 className="mr-4 font-[Giants-Inline]">Soo</h1>
+        <IoLogoSnapchat />
       </Link>
       <nav className="flex items-center gap-4 font-semibold">
         <select name="category" id="category">
