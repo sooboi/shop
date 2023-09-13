@@ -1,12 +1,20 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { SiPrestashop } from "react-icons/si";
 import { HiTemplate } from "react-icons/hi";
 import { BsCartFill, BsDatabaseFillAdd, BsSearchHeart } from "react-icons/bs";
-import { login } from "../api/firebase";
+import { login, logout, onUserStateChange } from "../api/firebase";
 
 export default function Header() {
+  const [user, setUser] = useState();
   const [text, setText] = useState("");
+
+  /** 상태 관찰자 로그인/로그아웃 */
+  useEffect(() => {
+    onUserStateChange((user) => {
+      setUser(user);
+    });
+  }, []);
 
   /** 검색창 submit 함수 */
   const handleSubmit = (e) => {
@@ -17,6 +25,14 @@ export default function Header() {
   const handleInput = (e) => {
     setText(e.target.value);
     console.log(text);
+  };
+
+  const handleLogin = () => {
+    login().then(setUser);
+  };
+
+  const handleLogout = () => {
+    logout().then(setUser);
   };
 
   return (
@@ -56,9 +72,16 @@ export default function Header() {
           상품 등록
         </Link>
       </nav>
-      <button className="text-1xl font-semibold" onClick={login}>
-        로그인
-      </button>
+      {!user && (
+        <button className="text-1xl font-semibold" onClick={handleLogin}>
+          로그인
+        </button>
+      )}
+      {user && (
+        <button className="text-1xl font-semibold" onClick={handleLogout}>
+          로그아웃
+        </button>
+      )}
     </header>
   );
 }
