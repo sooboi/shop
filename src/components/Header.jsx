@@ -1,10 +1,24 @@
-import React from "react";
+import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import { SiPrestashop } from "react-icons/si";
 import { HiTemplate } from "react-icons/hi";
 import { BsCartFill, BsDatabaseFillAdd, BsSearchHeart } from "react-icons/bs";
+import { login } from "../api/firebase";
 
 export default function Header() {
+  const [text, setText] = useState("");
+
+  /** 검색창 submit 함수 */
+  const handleSubmit = (e) => {
+    e.preventDefault();
+  };
+
+  /** 검색어 input 핸들러 */
+  const handleInput = (e) => {
+    setText(e.target.value);
+    console.log(text);
+  };
+
   return (
     <header className="flex justify-between border-b border-gray-300 p-3">
       <Link to="/" className="flex items-center text-4xl text-brand">
@@ -18,12 +32,17 @@ export default function Header() {
           <option value="bottom">하의</option>
           <option value="shoes">신발</option>
         </select>
-        <div className="border border-gray-600 p-2">
-          <input type="text" placeholder="검색어를 입력하세요." />
+        <form onSubmit={handleSubmit} className="border border-gray-600 p-2">
+          <input
+            type="text"
+            value={text}
+            placeholder="검색어를 입력하세요."
+            onChange={handleInput}
+          />
           <button>
             <BsSearchHeart />
           </button>
-        </div>
+        </form>
         <Link to="/products" className="text-1xl flex items-center">
           <HiTemplate className="mr-2" />
           상품
@@ -37,7 +56,9 @@ export default function Header() {
           상품 등록
         </Link>
       </nav>
-      <button className="text-1xl font-semibold">로그인</button>
+      <button className="text-1xl font-semibold" onClick={login}>
+        로그인
+      </button>
     </header>
   );
 }
