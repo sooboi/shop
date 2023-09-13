@@ -4,6 +4,8 @@ import { SiPrestashop } from "react-icons/si";
 import { HiTemplate } from "react-icons/hi";
 import { BsCartFill, BsDatabaseFillAdd, BsSearchHeart } from "react-icons/bs";
 import { login, logout, onUserStateChange } from "../api/firebase";
+import User from "./User";
+import Button from "./ui/Button";
 
 export default function Header() {
   const [user, setUser] = useState();
@@ -12,6 +14,7 @@ export default function Header() {
   /** 상태 관찰자 로그인/로그아웃 */
   useEffect(() => {
     onUserStateChange((user) => {
+      console.log(user);
       setUser(user);
     });
   }, []);
@@ -24,15 +27,6 @@ export default function Header() {
   /** 검색어 input 핸들러 */
   const handleInput = (e) => {
     setText(e.target.value);
-    console.log(text);
-  };
-
-  const handleLogin = () => {
-    login().then(setUser);
-  };
-
-  const handleLogout = () => {
-    logout().then(setUser);
   };
 
   return (
@@ -63,25 +57,22 @@ export default function Header() {
           <HiTemplate className="mr-2" />
           상품
         </Link>
-        <Link to="/cart" className="text-1xl flex items-center">
-          <BsCartFill className="mr-2" />
-          장바구니
-        </Link>
-        <Link to="/products/new" className="text-1xl flex items-center">
-          <BsDatabaseFillAdd className="mr-2" />
-          상품 등록
-        </Link>
+        {user && (
+          <Link to="/cart" className="text-1xl flex items-center">
+            <BsCartFill className="mr-2" />
+            장바구니
+          </Link>
+        )}
+        {user && user.isAdmin && (
+          <Link to="/products/new" className="text-1xl flex items-center">
+            <BsDatabaseFillAdd className="mr-2" />
+            상품 등록
+          </Link>
+        )}
+        {user && <User user={user} />}
+        {!user && <Button text={"로그인"} onClick={login} />}
+        {user && <Button text={"로그아웃"} onClick={logout} />}
       </nav>
-      {!user && (
-        <button className="text-1xl font-semibold" onClick={handleLogin}>
-          로그인
-        </button>
-      )}
-      {user && (
-        <button className="text-1xl font-semibold" onClick={handleLogout}>
-          로그아웃
-        </button>
-      )}
     </header>
   );
 }
