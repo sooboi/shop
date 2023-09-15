@@ -14,7 +14,6 @@ function App() {
         <div className="container">
           <Header className="header" />
           <Outlet className="main" />
-          <Footer className="footer" />
         </div>
       </AuthContextProvider>
     </QueryClientProvider>
