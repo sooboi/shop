@@ -29,7 +29,7 @@ export default function NewProduct() {
             setSuccess("제품이 추가되었습니다.");
             setTimeout(() => {
               setSuccess(null);
-            }, 10000);
+            }, 8000);
           });
         // Firebase에 새로운 제품을 추가
       })

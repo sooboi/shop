@@ -21,14 +21,17 @@ const auth = getAuth();
 const provider = new GoogleAuthProvider();
 const database = getDatabase(app);
 
+/** 로그인 */
 export function login() {
   signInWithPopup(auth, provider).catch(console.error);
 }
 
+/** 로그아웃 */
 export function logout() {
   return signOut(auth).catch(console.error);
 }
 
+/** 로그인 관찰자  */
 export function onUserStateChange(callback) {
   onAuthStateChanged(auth, async (user) => {
     const updateUser = user ? await adminUser(user) : null;
@@ -50,6 +53,7 @@ async function adminUser(user) {
     });
 }
 
+/** 데이터 추가하기 */
 export async function addNewProduct(product, imageUrl) {
   const id = uuid();
   return set(ref(database, `products/${id}`), {
@@ -58,5 +62,15 @@ export async function addNewProduct(product, imageUrl) {
     price: parseInt(product.price),
     image: imageUrl,
     options: product.options.split(","),
+  });
+}
+
+/** 데이터 가져오기 */
+export async function getProducts() {
+  return get(ref(database, "products")).then((snapshot) => {
+    if (snapshot.exists()) {
+      return Object.values(snapshot.val());
+    }
+    return [];
   });
 }
