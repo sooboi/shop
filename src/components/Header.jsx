@@ -1,9 +1,8 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import { IoLogoSnapchat } from "react-icons/io";
 import { HiTemplate } from "react-icons/hi";
 import { BsCartFill, BsDatabaseFillAdd, BsSearchHeart } from "react-icons/bs";
-import { login, logout, onUserStateChange } from "../api/firebase";
 import User from "./User";
 import Button from "./ui/Button";
 import { useAuthContext } from "./context/Authcontext";
@@ -35,8 +34,9 @@ export default function Header() {
           <option value="bottom">하의</option>
           <option value="shoes">신발</option>
         </select>
-        <form onSubmit={handleSubmit} className="border border-gray-600 p-2">
+        <form onSubmit={handleSubmit}>
           <input
+            className="outline-none border-none my-0"
             type="text"
             value={text}
             placeholder="검색어를 입력하세요."
