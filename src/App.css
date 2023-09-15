@@ -6,7 +6,7 @@
   font-style: normal;
 }
 
-.container {
+/* .container {
   display: grid;
   grid-template-columns: 1fr;
   grid-template-rows: 100% auto 50px;
@@ -26,4 +26,4 @@
 
 .footer {
   grid-area: footer;
-}
+} */
