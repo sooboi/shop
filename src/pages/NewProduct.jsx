@@ -71,14 +71,18 @@ export default function NewProduct() {
           required
           onChange={handleChange}
         />
-        <input
-          type="text"
+        <select
+          className=" p-4 outline-none border border-gray-300 my-1"
           name="category"
           value={product.category ?? ""}
           placeholder="카테고리"
           required
           onChange={handleChange}
-        />
+        >
+          <option value="상의">상의</option>
+          <option value="하의">하의</option>
+          <option value="신발">신발</option>
+        </select>
         <input
           type="text"
           name="description"

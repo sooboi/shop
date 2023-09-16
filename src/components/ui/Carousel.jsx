@@ -45,7 +45,7 @@ export default class SimpleSlider extends Component {
           />
           <div className="absolute w-full top-40 text-center text-white drop-shadow-4xl ">
             <h2 className="text-3xl">사장님이 미쳤어요</h2>
-            <p>정신병원 내원 이력 다수</p>
+            <p>진짜로 미치진 않았어요</p>
           </div>
         </div>
       </Slider>
