@@ -2,10 +2,11 @@ import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import { IoLogoSnapchat } from "react-icons/io";
 import { HiTemplate } from "react-icons/hi";
-import { BsCartFill, BsDatabaseFillAdd, BsSearchHeart } from "react-icons/bs";
+import { BsDatabaseFillAdd, BsSearchHeart } from "react-icons/bs";
 import User from "./User";
 import Button from "./ui/Button";
-import { useAuthContext } from "./context/Authcontext";
+import { useAuthContext } from "../context/Authcontext";
+import CartStatus from "./ui/CartStatus";
 
 export default function Header() {
   const { user, login, logout } = useAuthContext();
@@ -51,9 +52,8 @@ export default function Header() {
           상품
         </Link>
         {user && (
-          <Link to="/cart" className="text-1xl flex items-center">
-            <BsCartFill className="mr-2" />
-            장바구니
+          <Link to="/cart">
+            <CartStatus />
           </Link>
         )}
         {user && user.isAdmin && (

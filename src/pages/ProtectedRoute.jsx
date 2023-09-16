@@ -1,5 +1,5 @@
 import React from "react";
-import { useAuthContext } from "../components/context/Authcontext";
+import { useAuthContext } from "../context/Authcontext";
 import { Navigate } from "react-router-dom";
 
 export default function ProtectedRoute({ children, requireAdmin }) {
