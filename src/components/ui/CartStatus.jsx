@@ -1,12 +1,11 @@
 import React from "react";
 import { BsCartFill } from "react-icons/bs";
-import { useQuery } from "@tanstack/react-query";
-import { getCart } from "../../api/firebase";
-import { useAuthContext } from "../../context/Authcontext";
+import useCart from "../../hooks/useCart";
 
 export default function CartStatus() {
-  const { uid } = useAuthContext();
-  const { data: products } = useQuery(["carts"], () => getCart(uid));
+  const {
+    cartQuery: { data: products },
+  } = useCart();
 
   return (
     <div className="text-1xl flex items-center relative">

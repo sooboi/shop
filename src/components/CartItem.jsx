@@ -1,10 +1,10 @@
 import React from "react";
-import { addOrUpdateToCart, removeFromCart } from "../api/firebase";
 import {
   BsFillXSquareFill,
   BsFillPatchPlusFill,
   BsFillPatchMinusFill,
 } from "react-icons/bs";
+import useCart from "../hooks/useCart";
 
 const ICON_CLASS =
   "text-xl transition-all cursor-pointer hover:text-brand hover:scale-105 mx-2";
@@ -14,14 +14,15 @@ export default function CartItem({
   products: { id, image, title, option, quantity, price },
   uid,
 }) {
+  const { addOrUpdateItem, removeItem } = useCart();
   const handleMinus = () => {
     if (quantity < 2) return;
-    addOrUpdateToCart(uid, { ...products, quantity: quantity - 1 });
+    addOrUpdateItem.mutate({ ...products, quantity: quantity - 1 });
   };
   const handlePlus = () => {
-    addOrUpdateToCart(uid, { ...products, quantity: quantity + 1 });
+    addOrUpdateItem.mutate({ ...products, quantity: quantity + 1 });
   };
-  const handleDelete = () => removeFromCart(uid, id);
+  const handleDelete = () => removeItem.mutate(id);
 
   return (
     <li className="flex justify-between my-2 items-center">
