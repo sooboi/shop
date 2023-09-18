@@ -7,9 +7,6 @@ export default function CartStatus() {
     cartQuery: { data: products },
   } = useCart();
 
-  console.log("장바구니 상태");
-  console.log(products);
-
   return (
     <div className="text-1xl flex items-center relative">
       <BsCartFill className="mr-2" />

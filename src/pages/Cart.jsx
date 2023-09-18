@@ -6,8 +6,10 @@ import Button from "../components/ui/Button";
 import useCart from "../hooks/useCart";
 import { BsFillPlusCircleFill } from "react-icons/bs";
 import { FaEquals } from "react-icons/fa";
+import { useAuthContext } from "../context/Authcontext";
 
 export default function Cart() {
+  const { uid } = useAuthContext();
   const {
     cartQuery: { isLoading, data: products },
   } = useCart();
@@ -30,7 +32,11 @@ export default function Cart() {
       <p className="text-2xl text-center font-bold pb-4 border-b border-gray-300">
         내 장바구니
       </p>
-      {!hasProducts && <p>장바구니에 상품이 없습니다 😭</p>}
+      {!hasProducts && (
+        <p className="flex flex-col my-10 items-center font-bold">
+          장바구니에 상품이 없습니다 ! 😭
+        </p>
+      )}
       {hasProducts && (
         <>
           <ul className="border-b border-gray-300 mb-8 p-4 px-8">
