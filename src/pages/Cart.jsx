@@ -6,12 +6,10 @@ import Button from "../components/ui/Button";
 import useCart from "../hooks/useCart";
 import { BsFillPlusCircleFill } from "react-icons/bs";
 import { FaEquals } from "react-icons/fa";
-import { useAuthContext } from "../context/Authcontext";
 
 export default function Cart() {
-  const { uid } = useAuthContext();
   const {
-    cartQuery: { isLoading, data: products },
+    cartQuery: { isLoading, data: products, uid },
   } = useCart();
 
   const Shipping = 3000;
