@@ -8,7 +8,7 @@ export default function useCart() {
 
   /** carts 전체가 아닌 사용자별로 캐시가 되도록 uid 설정 -> uid가 없는 경우 수행되지 않도록 enabled 설정 */
   const cartQuery = useQuery(["carts", uid || ""], () => getCart(uid), {
-    enabled: !uid,
+    enabled: !!uid,
   });
 
   /** 사용자 uid 해당하는 cart 에만 캐시되도록 설정 */
@@ -16,7 +16,7 @@ export default function useCart() {
     (Product) => addOrUpdateToCart(uid, Product),
     {
       onSuccess: () => {
-        queryClient.invalidateQueries(["cart", uid]);
+        queryClient.invalidateQueries(["carts", uid]);
       },
     }
   );
