@@ -26,13 +26,13 @@ export default function Cart() {
     );
 
   return (
-    <section className="p-8 flex flex-col">
+    <section className="p-8 flex flex-col h-screen">
       <p className="text-2xl text-center font-bold pb-4 border-b border-gray-300">
         내 장바구니
       </p>
       {!hasProducts && (
         <p className="flex flex-col my-10 items-center font-bold">
-          장바구니에 상품이 없습니다 ! 😭
+          장바구니에 상품이 없습니다 😭
         </p>
       )}
       {hasProducts && (
@@ -43,7 +43,7 @@ export default function Cart() {
                 <CartItem key={it.id} products={it} uid={uid} />
               ))}
           </ul>
-          <div className="flex justify-between items-center px-2 md:px-8 lg:px-16 mb-4">
+          <div className="flex justify-between items-center px-2 md:px-8 lg:px-16 mb-4 ">
             <PriceCard text="상품 금액" price={totalPrice} />
             <BsFillPlusCircleFill className="shrink-0" />
             <PriceCard text="배송액" price={Shipping} />

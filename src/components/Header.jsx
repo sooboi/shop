@@ -1,12 +1,8 @@
-import React, { useState } from "react";
+import React from "react";
 import { Link } from "react-router-dom";
 import { IoLogoSnapchat } from "react-icons/io";
 import { HiTemplate } from "react-icons/hi";
-import {
-  BsDatabaseFillAdd,
-  BsSearchHeart,
-  BsFillCloudSunFill,
-} from "react-icons/bs";
+import { BsDatabaseFillAdd, BsSearchHeart, BsSunFill } from "react-icons/bs";
 import User from "./User";
 import Button from "./ui/Button";
 import CartStatus from "./ui/CartStatus";
@@ -28,19 +24,20 @@ export default function Header() {
   const { handleToggle } = useNightContext();
 
   return (
-    <header className="flex justify-between border-b border-gray-300 p-3">
-      <Link
-        to="/"
-        onClick={handleReset}
-        className="flex items-center text-4xl text-brand"
-      >
-        <h1 className="mr-4 font-[Giants-Inline]">Soo</h1>
-        <IoLogoSnapchat />
-      </Link>
-      <nav className="flex items-center gap-4 font-semibold">
-        <p onClick={handleToggle}>
-          <BsFillCloudSunFill className="cursor-pointer hover:text-brand" />
-        </p>
+    <header className="p-6">
+      <div className="flex items-center justify-center">
+        <Link
+          id="link"
+          to="/"
+          onClick={handleReset}
+          className="flex items-center text-5xl text-brand"
+        >
+          <h1 className="mr-4 font-[Giants-Inline]">Soo</h1>
+          <IoLogoSnapchat />
+        </Link>
+      </div>
+
+      <div className="flex items-center justify-center mt-3">
         <select
           className="bg-transparent"
           name="category"
@@ -65,24 +62,36 @@ export default function Header() {
             <BsSearchHeart />
           </button>
         </form>
-        <Link to="/products" className="text-1xl flex items-center">
-          <HiTemplate className="mr-2" />
-          상품
-        </Link>
-        {user && (
-          <Link to="/cart">
-            <CartStatus />
+        <p className="ml-10" onClick={handleToggle}>
+          <BsSunFill className="cursor-pointer hover:text-brand" />
+        </p>
+      </div>
+
+      <nav className="flex justify-between">
+        <div className="flex items-center">
+          <Link to="/products" className="text-1xl flex items-center">
+            <HiTemplate className="mr-2" />
+            상품
           </Link>
-        )}
-        {user && user.isAdmin && (
-          <Link to="/products/new" className="text-1xl flex items-center">
-            <BsDatabaseFillAdd className="mr-2" />
-            상품 등록
-          </Link>
-        )}
-        {user && <User user={user} />}
-        {!user && <Button text={"로그인"} onClick={login} />}
-        {user && <Button text={"로그아웃"} onClick={logout} />}
+        </div>
+
+        <div className="flex items-center space-x-8 ">
+          {user && user.isAdmin && (
+            <Link to="/products/new" className="text-1xl flex items-center">
+              <BsDatabaseFillAdd className="mr-2" />
+              상품 등록
+            </Link>
+          )}
+          {user && (
+            <Link to="/cart">
+              <CartStatus />
+            </Link>
+          )}
+
+          {user && <User user={user} />}
+          {!user && <Button text={"로그인"} onClick={login} />}
+          {user && <Button text={"로그아웃"} onClick={logout} />}
+        </div>
       </nav>
     </header>
   );

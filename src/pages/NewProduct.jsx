@@ -40,7 +40,7 @@ export default function NewProduct() {
   };
 
   return (
-    <section className="w-full text-center p-3">
+    <section className="w-full text-center p-5">
       <h1 className="text-2xl font-bold my-4">새로운 제품 등록</h1>
       {success && <p className="my-2">✅ {success}</p>}
       {file && (
@@ -50,7 +50,7 @@ export default function NewProduct() {
           alt="local file"
         />
       )}
-      <form className="flex flex-col px-12" onSubmit={handleSubmit}>
+      <form className="flex flex-col px-12 h-screen" onSubmit={handleSubmit}>
         <input
           type="file"
           accept="image/*"

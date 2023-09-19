@@ -15,7 +15,7 @@ export default class SimpleSlider extends Component {
       arrows: false,
     };
     return (
-      <Slider {...settings} className=" mb-3.5 font-[Giants-Inline]">
+      <Slider {...settings} className="mb-3.5 font-[Giants-Inline]">
         <div className="relative">
           <img
             className="w-full max-h-96 object-cover"

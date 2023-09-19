@@ -20,3 +20,12 @@ body {
 input {
   @apply p-4 outline-none border border-gray-300 my-1;
 }
+
+.slick-slider .slick-dots li button::before {
+  @apply text-blue-500;
+}
+
+/* Change the color of the active dot (current slide) */
+.slick-slider .slick-dots li.slick-active button::before {
+  @apply text-brand;
+}

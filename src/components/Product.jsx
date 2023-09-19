@@ -33,7 +33,7 @@ export default function Product() {
 
       {error && <p>{error}</p>}
 
-      <ul className="grid grid-cols-1 md:grid-cols-3 lg-grid-cols-4 gap-4 p-4">
+      <ul className="grid grid-cols-2 md:grid-cols-4 gap-4 p-4">
         {search
           ? filteredTitle.map((it) => <ProductCard key={it.id} product={it} />)
           : filteredProduct?.map((it) => (
