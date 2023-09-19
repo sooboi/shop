@@ -11,12 +11,8 @@ import { useFilterContext } from "../context/Filtercontext";
 
 export default function Header() {
   const { user, login, logout } = useAuthContext();
-  const { handleFilter, filter } = useFilterContext();
-
-  /** 검색창 submit 함수 */
-  const handleSubmit = (e) => {
-    e.preventDefault();
-  };
+  const { handleFilter, filter, input, handleInput, handleSubmit } =
+    useFilterContext();
 
   return (
     <header className="flex justify-between border-b border-gray-300 p-3">
@@ -41,6 +37,8 @@ export default function Header() {
             className="outline-none border-none my-0"
             placeholder="검색어를 입력하세요."
             type="text"
+            value={input}
+            onChange={handleInput}
           />
           <button>
             <BsSearchHeart />

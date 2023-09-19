@@ -9,13 +9,21 @@ export default function Product() {
     productsQuery: { isLoading, error, data: products },
   } = useProducts();
 
-  const { filter } = useFilterContext();
+  const { filter, input } = useFilterContext();
 
   const filteredProduct = products?.filter((products) => {
     if (filter === "전체") {
-      return true;
+      return true; // filter 값이 전체면 모든 제품을 반환
     } else {
       return products.category === filter;
+    }
+  });
+
+  const filteredTitle = filteredProduct?.filter((it) => {
+    if (!input) {
+      return true; // input 값이 비어있을 때 모든 제품을 반환
+    } else {
+      return it.title.includes(input);
     }
   });
 
@@ -26,8 +34,14 @@ export default function Product() {
       {error && <p>{error}</p>}
 
       <ul className="grid grid-cols-1 md:grid-cols-3 lg-grid-cols-4 gap-4 p-4">
-        {filteredProduct &&
-          filteredProduct.map((it) => <ProductCard key={it.id} product={it} />)}
+        {/* {filteredProduct &&
+          filteredProduct.map((it) => <ProductCard key={it.id} product={it} />)} */}
+
+        {input
+          ? filteredTitle.map((it) => <ProductCard key={it.id} product={it} />)
+          : filteredProduct?.map((it) => (
+              <ProductCard key={it.id} product={it} />
+            ))}
       </ul>
     </>
   );

@@ -4,9 +4,18 @@ const FilterContext = createContext();
 
 export function FilterContextProvider({ children }) {
   const [filter, setFilter] = useState("전체");
+  const [input, setInput] = useState("");
 
   const handleFilter = (e) => {
     setFilter(e.target.value);
+  };
+
+  const handleInput = (e) => {
+    setInput(e.target.value);
+  };
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
   };
 
   return (
@@ -15,6 +24,10 @@ export function FilterContextProvider({ children }) {
         filter,
         setFilter,
         handleFilter,
+        input,
+        setInput,
+        handleInput,
+        handleSubmit,
       }}
     >
       {children}
