@@ -3,13 +3,15 @@ import { Link } from "react-router-dom";
 import { IoLogoSnapchat } from "react-icons/io";
 import { HiTemplate } from "react-icons/hi";
 import { BsDatabaseFillAdd, BsSearchHeart } from "react-icons/bs";
+import { useAuthContext } from "../context/Authcontext";
 import User from "./User";
 import Button from "./ui/Button";
-import { useAuthContext } from "../context/Authcontext";
 import CartStatus from "./ui/CartStatus";
+import { useFilterContext } from "../context/Filtercontext";
 
 export default function Header() {
   const { user, login, logout } = useAuthContext();
+  const { handleFilter, filter } = useFilterContext();
   const [text, setText] = useState("");
 
   /** 검색창 submit 함수 */
@@ -29,11 +31,16 @@ export default function Header() {
         <IoLogoSnapchat />
       </Link>
       <nav className="flex items-center gap-4 font-semibold">
-        <select name="category" id="category">
-          <option value="all">전체</option>
-          <option value="top">상의</option>
-          <option value="bottom">하의</option>
-          <option value="shoes">신발</option>
+        <select
+          name="category"
+          id="category"
+          value={filter}
+          onChange={handleFilter}
+        >
+          <option value="전체">전체</option>
+          <option value="상의">상의</option>
+          <option value="하의">하의</option>
+          <option value="신발">신발</option>
         </select>
         <form onSubmit={handleSubmit}>
           <input
