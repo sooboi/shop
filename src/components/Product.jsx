@@ -22,7 +22,9 @@ export default function Product() {
   return (
     <>
       {isLoading && <Loader />}
+
       {error && <p>{error}</p>}
+
       <ul className="grid grid-cols-1 md:grid-cols-3 lg-grid-cols-4 gap-4 p-4">
         {filteredProduct &&
           filteredProduct.map((it) => <ProductCard key={it.id} product={it} />)}
