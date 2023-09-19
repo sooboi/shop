@@ -34,11 +34,18 @@ export default function Product() {
       {error && <p>{error}</p>}
 
       <ul className="grid grid-cols-2 md:grid-cols-4 gap-4 p-4">
-        {search
+        {/* {search
           ? filteredTitle.map((it) => <ProductCard key={it.id} product={it} />)
           : filteredProduct?.map((it) => (
               <ProductCard key={it.id} product={it} />
-            ))}
+            ))} */}
+        {filteredTitle && filteredTitle.length > 0 ? (
+          filteredTitle.map((product) => (
+            <ProductCard key={product.id} product={product} />
+          ))
+        ) : (
+          <p className="h-72">해당 검색어의 제품을 찾을 수 없습니다 🥺</p>
+        )}
       </ul>
     </>
   );
