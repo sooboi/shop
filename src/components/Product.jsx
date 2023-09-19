@@ -9,7 +9,7 @@ export default function Product() {
     productsQuery: { isLoading, error, data: products },
   } = useProducts();
 
-  const { filter, input } = useFilterContext();
+  const { filter, search } = useFilterContext();
 
   const filteredProduct = products?.filter((products) => {
     if (filter === "전체") {
@@ -20,10 +20,10 @@ export default function Product() {
   });
 
   const filteredTitle = filteredProduct?.filter((it) => {
-    if (!input) {
+    if (!search) {
       return true; // input 값이 비어있을 때 모든 제품을 반환
     } else {
-      return it.title.includes(input);
+      return it.title.includes(search);
     }
   });
 
@@ -37,7 +37,7 @@ export default function Product() {
         {/* {filteredProduct &&
           filteredProduct.map((it) => <ProductCard key={it.id} product={it} />)} */}
 
-        {input
+        {search
           ? filteredTitle.map((it) => <ProductCard key={it.id} product={it} />)
           : filteredProduct?.map((it) => (
               <ProductCard key={it.id} product={it} />
