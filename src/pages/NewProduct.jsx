@@ -40,7 +40,7 @@ export default function NewProduct() {
   };
 
   return (
-    <section className="w-full text-center">
+    <section className="w-full text-center p-3">
       <h1 className="text-2xl font-bold my-4">새로운 제품 등록</h1>
       {success && <p className="my-2">✅ {success}</p>}
       {file && (
@@ -75,7 +75,7 @@ export default function NewProduct() {
           onChange={handleChange}
         />
         <select
-          className=" p-4 outline-none border border-gray-300 my-1"
+          className=" p-4 outline-none border border-gray-300 my-1 text-gray-400"
           name="category"
           value={product.category ?? ""}
           placeholder="카테고리"
@@ -94,6 +94,7 @@ export default function NewProduct() {
           onChange={handleChange}
         />
         <input
+          className="mb-10"
           type="text"
           name="options"
           value={product.options ?? ""}

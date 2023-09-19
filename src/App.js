@@ -4,6 +4,7 @@ import Header from "./components/Header";
 import { AuthContextProvider } from "./context/Authcontext";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { FilterContextProvider } from "./context/Filtercontext";
+import { NightContextProvider } from "./context/Nightcontext";
 
 const queryClient = new QueryClient();
 
@@ -12,10 +13,12 @@ function App() {
     <QueryClientProvider client={queryClient}>
       <AuthContextProvider>
         <FilterContextProvider>
-          <div className="container">
-            <Header className="header" />
-            <Outlet className="main" />
-          </div>
+          <NightContextProvider>
+            <div className="container">
+              <Header />
+              <Outlet />
+            </div>
+          </NightContextProvider>
         </FilterContextProvider>
       </AuthContextProvider>
     </QueryClientProvider>

@@ -20,6 +20,12 @@ export function FilterContextProvider({ children }) {
     setSearch(input);
   };
 
+  const handleReset = (e) => {
+    setFilter("전체");
+    setInput("");
+    setSearch("");
+  };
+
   return (
     <FilterContext.Provider
       value={{
@@ -31,6 +37,7 @@ export function FilterContextProvider({ children }) {
         handleInput,
         handleSubmit,
         search,
+        handleReset,
       }}
     >
       {children}

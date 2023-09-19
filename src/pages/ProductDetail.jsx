@@ -33,7 +33,7 @@ export default function ProductDetail() {
 
   return (
     <>
-      <p className="mx-12 mt-4 text-gray-800">{category}</p>
+      <p className="mx-12 mt-4  text-gray-500">{category}</p>
       <section className="flex flex-col md:flex-row p-4 ">
         <img
           className="xl:w-2/4 md:w-3/4 sm:w-full px-4 basis-7/12"
@@ -51,7 +51,7 @@ export default function ProductDetail() {
               옵션 :
             </label>
             <select
-              className="p-2 m-4 flex-1 border-2 border-dashed border-brand outline-none"
+              className="p-2 m-4 flex-1 border-2 border-dashed border-brand outline-none text-black"
               id="select"
               onChange={handleSelect}
               value={selected}

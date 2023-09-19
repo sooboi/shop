@@ -12,6 +12,7 @@ export default class SimpleSlider extends Component {
       autoplay: true,
       slidesToShow: 1,
       slidesToScroll: 1,
+      arrows: false,
     };
     return (
       <Slider {...settings} className=" mb-3.5 font-[Giants-Inline]">

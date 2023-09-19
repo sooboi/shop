@@ -10,7 +10,7 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 
-  @apply flex flex-col items-center;
+  @apply flex flex-col items-center bg-black;
 }
 
 #root {

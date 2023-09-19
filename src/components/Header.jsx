@@ -2,26 +2,47 @@ import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import { IoLogoSnapchat } from "react-icons/io";
 import { HiTemplate } from "react-icons/hi";
-import { BsDatabaseFillAdd, BsSearchHeart } from "react-icons/bs";
-import { useAuthContext } from "../context/Authcontext";
+import {
+  BsDatabaseFillAdd,
+  BsSearchHeart,
+  BsFillCloudSunFill,
+} from "react-icons/bs";
 import User from "./User";
 import Button from "./ui/Button";
 import CartStatus from "./ui/CartStatus";
+import { useAuthContext } from "../context/Authcontext";
 import { useFilterContext } from "../context/Filtercontext";
+import { useNightContext } from "../context/Nightcontext";
 
 export default function Header() {
   const { user, login, logout } = useAuthContext();
-  const { handleFilter, filter, input, handleInput, handleSubmit } =
-    useFilterContext();
+  const {
+    handleFilter,
+    filter,
+    input,
+    handleInput,
+    handleSubmit,
+    handleReset,
+  } = useFilterContext();
+
+  const { handleToggle } = useNightContext();
 
   return (
     <header className="flex justify-between border-b border-gray-300 p-3">
-      <Link to="/" className="flex items-center text-4xl text-brand">
+      <Link
+        to="/"
+        onClick={handleReset}
+        className="flex items-center text-4xl text-brand"
+      >
         <h1 className="mr-4 font-[Giants-Inline]">Soo</h1>
         <IoLogoSnapchat />
       </Link>
       <nav className="flex items-center gap-4 font-semibold">
+        <p onClick={handleToggle}>
+          <BsFillCloudSunFill className="cursor-pointer hover:text-brand" />
+        </p>
         <select
+          className="bg-transparent"
           name="category"
           id="category"
           value={filter}
@@ -34,7 +55,7 @@ export default function Header() {
         </select>
         <form onSubmit={handleSubmit}>
           <input
-            className="outline-none border-none my-0"
+            className="outline-none border-none my-0 bg-transparent"
             placeholder="검색어를 입력하세요."
             type="text"
             value={input}
