@@ -5,16 +5,18 @@ const FilterContext = createContext();
 export function FilterContextProvider({ children }) {
   const [filter, setFilter] = useState("all");
 
-  useEffect(() => {
-    console.log(filter);
-  }, [filter]);
-
   const handleFilter = (e) => {
     setFilter(e.target.value);
   };
 
   return (
-    <FilterContext.Provider value={{ filter, setFilter, handleFilter }}>
+    <FilterContext.Provider
+      value={{
+        filter,
+        setFilter,
+        handleFilter,
+      }}
+    >
       {children}
     </FilterContext.Provider>
   );

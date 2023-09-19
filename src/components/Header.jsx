@@ -12,16 +12,10 @@ import { useFilterContext } from "../context/Filtercontext";
 export default function Header() {
   const { user, login, logout } = useAuthContext();
   const { handleFilter, filter } = useFilterContext();
-  const [text, setText] = useState("");
 
   /** 검색창 submit 함수 */
   const handleSubmit = (e) => {
     e.preventDefault();
-  };
-
-  /** 검색어 input 핸들러 */
-  const handleInput = (e) => {
-    setText(e.target.value);
   };
 
   return (
@@ -45,10 +39,8 @@ export default function Header() {
         <form onSubmit={handleSubmit}>
           <input
             className="outline-none border-none my-0"
-            type="text"
-            value={text}
             placeholder="검색어를 입력하세요."
-            onChange={handleInput}
+            type="text"
           />
           <button>
             <BsSearchHeart />
