@@ -26,7 +26,7 @@ export default function Cart() {
     );
 
   return (
-    <section className="p-8 flex flex-col h-screen">
+    <section className="p-8 flex flex-col">
       <p className="text-2xl text-center font-bold pb-4 border-b border-gray-300">
         내 장바구니
       </p>

@@ -7,11 +7,14 @@ export function NightContextProvider({ children }) {
 
   const handleToggle = (e) => {
     setToggle((prev) => !prev);
-    console.log(toggle);
+  };
+
+  const MoveToTop = () => {
+    window.scrollTo({ top: 0, behavior: "smooth" });
   };
 
   return (
-    <NightContext.Provider value={{ toggle, handleToggle }}>
+    <NightContext.Provider value={{ toggle, handleToggle, MoveToTop }}>
       <div
         className={
           toggle

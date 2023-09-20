@@ -10,7 +10,7 @@ import { useAuthContext } from "../context/Authcontext";
 import { useFilterContext } from "../context/Filtercontext";
 import { useNightContext } from "../context/Nightcontext";
 
-export default function Header() {
+function Header() {
   const { user, login, logout } = useAuthContext();
   const {
     handleFilter,
@@ -96,3 +96,5 @@ export default function Header() {
     </header>
   );
 }
+
+export default React.memo(Header);

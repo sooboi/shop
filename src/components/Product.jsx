@@ -11,6 +11,7 @@ export default function Product() {
 
   const { filter, search } = useFilterContext();
 
+  /** 필터 기능 */
   const filteredProduct = products?.filter((products) => {
     if (filter === "전체") {
       return true; // filter 값이 전체면 모든 제품을 반환
@@ -19,6 +20,7 @@ export default function Product() {
     }
   });
 
+  /** 검색 기능 */
   const filteredTitle = filteredProduct?.filter((it) => {
     if (!search) {
       return true; // input 값이 비어있을 때 모든 제품을 반환
@@ -34,11 +36,6 @@ export default function Product() {
       {error && <p>{error}</p>}
 
       <ul className="grid grid-cols-2 md:grid-cols-4 gap-4 p-4">
-        {/* {search
-          ? filteredTitle.map((it) => <ProductCard key={it.id} product={it} />)
-          : filteredProduct?.map((it) => (
-              <ProductCard key={it.id} product={it} />
-            ))} */}
         {filteredTitle && filteredTitle.length > 0 ? (
           filteredTitle.map((product) => (
             <ProductCard key={product.id} product={product} />
