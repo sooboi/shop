@@ -18,7 +18,7 @@ export default function Footer() {
       </p>
       <footer className="w-full bg-slate-500 bottom-0 p-2 text-white flex items-center justify-around">
         <ul className="flex p-2">
-          <li className="text-xl px-2 border border-white mr-5">Sooboi</li>
+          <li className="text-xl px-2 border border-white mr-5">SooBoi</li>
           <Link
             to="https://github.com/sooboi"
             className="flex items-center mr-4"
