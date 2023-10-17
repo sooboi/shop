@@ -32,7 +32,7 @@ export default function Cart() {
       </p>
       {!hasProducts && (
         <p className="flex flex-col my-10 items-center font-bold">
-          장바구니에 상품이 없습니다 😭
+          내 장바구니에 상품이 없습니다 😭
         </p>
       )}
       {hasProducts && (
